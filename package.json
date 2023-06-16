@@ -1,0 +1,33 @@
+{
+  "name": "pokedex",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite-ssg build",
+    "preview": "vite preview",
+    "generate-pwa-assets": "pwa-assets-generator"
+  },
+  "dependencies": {
+    "@vueuse/core": "^10.1.2",
+    "axios": "^1.4.0",
+    "gsap": "^3.11.5",
+    "lodash-es": "^4.17.21",
+    "pinia": "^2.1.3",
+    "vue": "^3.2.47",
+    "vue-router": "^4.2.2"
+  },
+  "devDependencies": {
+    "@vite-pwa/assets-generator": "^0.0.3",
+    "@vitejs/plugin-vue": "^4.1.0",
+    "@vueuse/head": "^1.1.26",
+    "critters": "^0.0.16",
+    "cross-fetch": "^3.1.6",
+    "unocss": "^0.52.7",
+    "unplugin-vue-components": "^0.25.0",
+    "vite": "^4.3.9",
+    "vite-plugin-pwa": "^0.16.4",
+    "vite-ssg": "^0.22.2"
+  }
+}
