@@ -47,6 +47,10 @@ class InifiniteScroll {
                 { distance: this.scrollerEl.value.offsetHeight }
             )
         })
+
+        this.root.isInfiniteScrollReady = true
+
+        
     }
     stop() {
         this.scope.stop()

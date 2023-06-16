@@ -75,6 +75,24 @@ const scrollerItemElStyleShrunk = {
   opacity: '0'
 }
 
+let vListenOnPokemonCount = {}
+if (!import.meta.env.SSR) {
+  let loadedPokemonCount = 0
+  vListenOnPokemonCount = {
+    updated: () => {
+      loadedPokemonCount++
+      if (loadedPokemonCount === root.pageInitialLimit * 2) {
+        if (
+            root.isInfiniteScrollReady
+            && !root.hasFetchedByScrolling
+        ) {
+            root.hasFetchedByScrolling = true
+        }
+      }
+    }
+  }
+}
+
 let vClientInfiniteScroll = {}
 if (
   !import.meta.env.SSR 
@@ -233,6 +251,7 @@ function onLeave(el, done) {
 
 <template>
     <HeaderBar
+      @click="console.log(root.hasFetchedByScrolling)"
       :style="{ zIndex: !isImageTransitionEnd ? 100 : 'unset' }">
     </HeaderBar>
 
@@ -251,6 +270,7 @@ function onLeave(el, done) {
             ref="scrollerItemEl"
             class="g0"
             v-client-infinite-scroll
+            v-listen-on-pokemon-count
             :style="{
               transformOrigin: scrollerEl
                 ? `${scrollerEl.offsetWidth / 2}px ${scrollerEl.scrollTop + scrollerEl.offsetHeight / 2}px`
@@ -273,10 +293,10 @@ function onLeave(el, done) {
                   @click.prevent="updateClickedEntryRects($event)"></Entry>
               </li>
 
-              <template v-if="!root.hasFetchedAllPokemons">
+              <template v-if="!root.hasFetchedByScrolling">
                 <li
                   class="g0-gc"
-                  v-for="a of root.pageInitialLimit"
+                  v-for="n of root.pageInitialLimit"
                   >
                   <EntryPlaceholder></EntryPlaceholder>
                 </li>

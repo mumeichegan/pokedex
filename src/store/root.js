@@ -66,7 +66,10 @@ export const useRootStore = defineStore('root', {
         pokemons: [],
         pokemonSpecies: [],
 
-        hasFetchedAllPokemons: false
+        hasFetchedAllPokemons: false,
+        hasFetchedByScrolling: false,
+
+        isInfiniteScrollReady: false
 
         // pokemonTypes,
         // pokemonStatsNaming,
@@ -114,7 +117,7 @@ export const useRootStore = defineStore('root', {
             
             await this.addPokemons()
         },
-        async addPokemons() {
+        async addPokemons(isClient) {
 
             // this.addPokemons.isDone = this.addPokemons.isDone || false
             // if (this.addPokemons.isDone) {
@@ -183,6 +186,13 @@ export const useRootStore = defineStore('root', {
                              
                     })
                 }
+
+                // if (
+                //     this.isInfiniteScrollReady
+                //     && !this.hasFetchedByScrolling
+                // ) {
+                //     this.hasFetchedByScrolling = true
+                // }
             }
             
         }
