@@ -31,11 +31,13 @@ class InifiniteScroll {
 
             const throttledAddPokemons = throttle(
                 this.root.addPokemons, 
-                1500, 
+                1750, 
                 {
                     trailing: false
                 }
             )
+
+            
             
             useInfiniteScroll(
                 this.scrollerEl,
@@ -44,7 +46,9 @@ class InifiniteScroll {
                     throttledAddPokemons()
                 },
                 
-                { distance: this.scrollerEl.value.offsetHeight }
+                // { distance: this.scrollerEl.value.offsetHeight }
+                { distance: this.scrollerItemEl.value.offsetHeight / 2 }
+                // { distance: this.scrollerItemEl.value.offsetHeight - this.scrollerEl.value.offsetHeight }
             )
         })
 
